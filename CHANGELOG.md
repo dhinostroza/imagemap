@@ -3,6 +3,16 @@ All notable changes to the Imagemap module will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [1.9.0] - 2021-06-21
+### Added
+- Add Dermatology photo upload body image (Jae Lee)
+
+## Changed
+- fix issue causing limit to number of imagemaps per page (Andrew Martin)
+- partially fixes issues with checkbox fields (Andrew Martin)
+- updated citation for painmap (Andrew Martin)
+
+
 ## [1.8.0] - 2021-03-16
 ### Added
 - add option to use api urls (Andrew Martin)
