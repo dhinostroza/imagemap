@@ -333,6 +333,19 @@
             "hideInput": true,
             "singleSelect": false,
             "map": "maps/szmn_front.html"
+        },
+        "SZMN_SIDE": {
+            "name": "szmn_side",
+            "alt": "SZMN Side",
+            "desc": "Facemap (side) for pain",
+            "options": "01,02,03,04,05,06,07,08,09,10,11,12,13,14",
+            "data_dict_default": "01, Right Eye | 02, Left Eye | 03, Nose | 04, Upper Lip | 05, Lower Lip | 06, Tongue | 07, Right Cheek | 08, Left Cheek | 09, Right Temple | 10, Left Temple | 11, Roof of the Mouth | 12, Back of the Throat | 13, Voice Box | 14, Jaw (see front face for left or right)",
+            "image": "img/szmn_side.png",
+            "width": 706,
+            "height": 883,
+            "hideInput": true,
+            "singleSelect": false,
+            "map": "maps/szmn_side.html"
         }
     }
 }

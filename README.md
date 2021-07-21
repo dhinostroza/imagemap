@@ -178,3 +178,13 @@ This project includes an [Example Instrument](docs/Instrument\ Example.zip) that
  * The 66 Swollen / 68 Tender Joint Map was contributed by Dr Tom Lynch from the Institute of Bone and Joint Research, University of Sydney. The image was adopted with permission from Dr Alexis Ogdie-Beatty and first published in this article from the OMERACT group: [website](http://www.jrheum.org/content/early/2019/05/24/jrheum.181089).
  * The FR_REGION was contributed by Hugo Potier of University Hospital of Nîmes. The image source come from [data.gouv.fr](http://data.gouv.fr).
  * Fibromyalgia self-report image appears in the article ["Fibromyalgia: A Clinical Review"](https://jamanetwork.com/journals/jama/fullarticle/1860480) by Daniel J. Clauw and is provided by Thomas Van Doorn and Dr. Andrea Nicol. Copyright 2014 American Medical Association. All rights reserved.
+
+<details>
+<summary>Test</summary>
+<p>
+
+```
+1, one
+```
+</p>
+</details>
