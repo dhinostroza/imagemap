@@ -1525,8 +1525,8 @@ This is a Patient self-report figure for the Assessment of Fibromyalgia.
 f01, Face
 f02, Chest
 f03, Right Arm
-f04,Left Arm
-f05,Right Leg
+f04, Left Arm
+f05, Right Leg
 f06, Left Leg
 r02, Back
 ```
