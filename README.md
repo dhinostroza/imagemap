@@ -1536,6 +1536,64 @@ r02, Back
 This is a body rendering developed at Stanford for a specific project -- no attributions required.
 ![DERM_PHOTO_BODY](./img/derm_photo_body.png)
 
+**`SZMN_FRONT`**
+
+<details>
+<summary>Keys and Values for SZMN_FRONT</summary>
+<p>
+
+```
+01, Left Eye
+02, Right Eye
+03, Nose
+04, Mouth
+05, Left Jaw
+06, Right Jaw
+07, Voicebox
+08, Throat
+09, Left Cheek
+10, Right Cheek
+11, Left Temple
+12, Right Temple
+13, Left Ear
+14, Right Ear
+15, Head
+```
+</p>
+</details>
+
+This is a body rendering developed at Stanford for a specific project -- no attributions required.
+![SZMN_FRONT](./img/szmn_front.png)
+
+**`SZMN_SIDE`**
+
+<details>
+<summary>Keys and Values for SZMN_SIDE</summary>
+<p>
+
+```
+01, Right Eye
+02, Left Eye
+03, Nose
+04, Upper Lip
+05, Lower Lip
+06, Tongue
+07, Right Cheek
+08, Left Cheek
+09, Right Temple
+10, Left Temple
+11, Roof of the Mouth
+12, Back of the Throat
+13, Voice Box
+14, Jaw (see front face for left or right)
+```
+</p>
+</details>
+
+This is a body rendering developed at Stanford for a specific project -- no attributions required.
+![SZMN_SIDE](./img/szmn_side.png)
+
+
 
 ## Usage
 To display one of the images above in a survey or data entry form, add a new field of type **Text Box** and include one of the following options in the **Action Tags / Field Annotation (optional)** field:
@@ -1559,6 +1617,8 @@ To display one of the images above in a survey or data entry form, add a new fie
 @IMAGEMAP=66SWOLLEN_68TENDER_JOINT_COUNT
 @IMAGEMAP=FR_REGION
 @IMAGEMAP=FIBROMYALGIA_BODY
+@IMAGEMAP=SZMN_FRONT
+@IMAGEMAP=SZMN_SIDE
 ```
 
 Each region of an image is associated with a key, for example, the "Ankle (front-left)" of the female body diagram is linked to the key "f34". To find a particular key for a body part, please refer to the HTML files (map files) located in the folder `maps`. After selecting multiple body parts, the field containing the action tag `@IMAGEMAP` will have as a value a string of comma-separated keys, e.g. "f36,f17,f18,f21". Similarly, if using the faces diagram, the field containing the action tag (e.g. `@IMAGEMAP=SMILE_SCALE`) will have the value corresponding to the face clicked.
