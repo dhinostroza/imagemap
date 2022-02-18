@@ -2,6 +2,15 @@
 All notable changes to the Imagemap module will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.9.1] - 2022-02-18
+### Added
+- Add example project xml (Michael Bentz)
+
+## Changed
+- Fix vertically mirrored element-wise coordinates for right half of TEETH_SURFACE image (Kyle Chensey)
+- Add missing keys and enums for TEETH_SURFACE docs (Michael Bentz)
+- Update Instrument Example.zip to include all options for TEETH_SURFACE (Kyle Chesney)
+
 
 ## [1.9.0] - 2021-06-21
 ### Added
