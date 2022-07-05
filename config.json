@@ -346,6 +346,19 @@
             "hideInput": true,
             "singleSelect": false,
             "map": "maps/szmn_side.html"
+        },
+        "PHOTOFORM": {
+            "name": "photoform",
+            "alt": "Photoform",
+            "desc": "Custom map for photoform project",
+            "options": "01,02,03,04",
+            "data_dict_default": "01, Upper Front | 02, Lower Front | 03, Upper Back | 04, Lower Back",
+            "image": "img/photoform.png",
+            "width": 750,
+            "height": 820,
+            "hideInput": true,
+            "singleSelect": false,
+            "map": "maps/photoform.html"
         }
     }
 }
