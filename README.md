@@ -7,8 +7,7 @@ This REDCap module replaces an input, radio, or checkbox field with an image tha
 
 
 ## Prerequisites
-- REDCap >= 8.0.3 (for versions < 8.0.3, [REDCap Modules](https://github.com/vanderbilt/redcap-external-modules) is required).
-
+- REDCap >= 12.0.4 (see previous released for support of earlier REDCap versions)
 
 ## Easy Installation
 - Obtain this module from the Consortium [REDCap Repo](https://redcap.vanderbilt.edu/consortium/modules/index.php) from the control center.
