@@ -5,6 +5,7 @@
     "permissions": [
         "redcap_every_page_top"
     ],
+    "framework-version": 9,
     "authors": [
         {
             "name": "Andy Martin",
@@ -18,8 +19,16 @@
         }
     ],
     "compatibility": {
-        "redcap-version-min": "8.0.3"
+        "redcap-version-min": "12.0.4"
     },
+    "project-settings": [
+        {
+            "key": "enable-console-logs",
+            "name": "<b>Enable console logging</b><br>If you check this box, logs will be written out to the console",
+            "required": false,
+            "type": "checkbox"
+        }
+    ],
     "system-settings": [
         {
             "key": "use-api-urls",
