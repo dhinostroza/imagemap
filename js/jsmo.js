@@ -320,57 +320,61 @@
         // Takes the values from the image map and saves them to the redcap form
         updateAreaList: function(image, data) {
 
-            // Get field from image
-            const field_name = $(image).attr('field');
+            // Only update on a 'select'
+            if (data.state === 'select') {
 
-            // Get setting for this field
-            const setting = module.data.fields[field_name];
+                // Get field from image
+                const field_name = $(image).attr('field');
 
-            // Get the container tr
-            const tr = setting.tr; //$('tr[sq_id='+field_name+']');
+                // Get setting for this field
+                const setting = module.data.fields[field_name];
 
-            module.log(field_name, data);
+                // Get the container tr
+                const tr = setting.tr; //$('tr[sq_id='+field_name+']');
 
-            // Handle Radio
-            if (setting.type === 'radio') {
-                // We only handle selections here as the browser automatically deselects other options
-                if (data.selected === true) {
-                    // REDCap radios now support unique element IDs - yea!
-                    const id = 'opt-' + field_name + '_' + data.key.toString();
-                    // In order to call all of the existing events bound to the radio, we are using the native
-                    // html event handler instead of javascript
-                    const elem = document.getElementById(id);
-                    elem.checked = true;
-                    elem.dispatchEvent(new Event ('click'));
+                module.log(field_name, data);
+
+                // Handle Radio
+                if (setting.type === 'radio') {
+                    // We only handle selections here as the browser automatically deselects other options
+                    if (data.selected === true) {
+                        // REDCap radios now support unique element IDs - yea!
+                        const id = 'opt-' + field_name + '_' + data.key.toString();
+                        // In order to call all of the existing events bound to the radio, we are using the native
+                        // html event handler instead of javascript
+                        const elem = document.getElementById(id);
+                        elem.checked = true;
+                        elem.dispatchEvent(new Event('click'));
+                    }
+                } else if (setting.type === "checkbox") {
+                    // If checkbox exists - make sure they are in-sync
+                    $('input[type=checkbox][code="' + data.key.toString() + '"]', tr).each(function () {
+                        //module.log ('Found checkbox ' + data.key);
+                        //module.log (cb);
+                        const checked = $(this).is(":checked");
+                        //module.log ('is checked: ' + checked);
+                        const selected = data.selected;
+                        //module.log ('is selected: ' + selected);
+                        if (checked !== selected) {
+                            $(this).click();
+                            //$(this).blur();
+                        }
+                    });
+                } else if (setting.type === 'text') {
+                    // If input field is used to hold list, then update list
+                    $('input[type=text][name="' + field_name + '"]', tr).each(function () {
+                        // Update input with value from mapster image
+                        const sel = $(image).mapster('get');
+                        if (sel) {
+                            const selSort = sel.split(',').sort().join(',');
+                            $(this).val(selSort);
+                        } else {
+                            $(this).val('');
+                        }
+                        $(this).blur();
+                        $(this).change();
+                    });
                 }
-            } else if (setting.type === "checkbox") {
-                // If checkbox exists - make sure they are in-sync
-                $('input[type=checkbox][code="' + data.key.toString() + '"]', tr).each(function() {
-                    //module.log ('Found checkbox ' + data.key);
-                    //module.log (cb);
-                    const checked = $(this).is(":checked");
-                    //module.log ('is checked: ' + checked);
-                    const selected = data.selected;
-                    //module.log ('is selected: ' + selected);
-                    if (checked !== selected) {
-                        $(this).click();
-                        //$(this).blur();
-                    }
-                });
-            } else if (setting.type === 'text') {
-                // If input field is used to hold list, then update list
-                $('input[type=text][name="'+field_name+'"]', tr).each(function() {
-                    // Update input with value from mapster image
-                    const sel = $(image).mapster('get');
-                    if (sel) {
-                        const selSort = sel.split(',').sort().join(',');
-                        $(this).val(selSort);
-                    } else {
-                        $(this).val('');
-                    }
-                    $(this).blur();
-                    $(this).change();
-                });
             }
         },
 
