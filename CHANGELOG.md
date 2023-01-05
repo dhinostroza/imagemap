@@ -2,16 +2,18 @@
 All notable changes to the Imagemap module will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## [2.0.0] - 2022-12-28
+## [1.10.0] - 2023-01-05
 ### Changed
 - Updated to framework 9 (which means minimum REDCap version for this release is 12.0.4)
 - Substantially refactored to use JSMO for client-side javascript and to be more selective about when actions are performed to help with future debugging
 - Addressed bug in radio button selection that would prevent actual redcap radio input from being set correctly (see https://community.projectredcap.org/questions/139920/imagemap-em-single-selection-fails-when-changing-s.html)
 - Addressed bug (not documented) where changes to checkbox fields from the UI (e.g. _OPTIONS version of maps) were not updating the imagemap.
+
 ### Added
 - Introduced project-level setting to output console logs on a per-project basis
 - Two maps (photoform and a facemap) - Ryan Valentine
 - The EM now hides the input form until all maps have been rendered and inputs hidden to reduce flicker on the client side
+
 
 ## [1.9.1] - 2022-02-18
 ### Added
