@@ -5,6 +5,7 @@
     "permissions": [
         "redcap_every_page_top"
     ],
+    "framework-version": 9,
     "authors": [
         {
             "name": "Andy Martin",
@@ -18,8 +19,16 @@
         }
     ],
     "compatibility": {
-        "redcap-version-min": "8.0.3"
+        "redcap-version-min": "12.0.4"
     },
+    "project-settings": [
+        {
+            "key": "enable-console-logs",
+            "name": "<b>Enable console logging</b><br>If you check this box, logs will be written out to the console",
+            "required": false,
+            "type": "checkbox"
+        }
+    ],
     "system-settings": [
         {
             "key": "use-api-urls",
@@ -188,7 +197,7 @@
             "singleSelect": true,
             "hideInput": true,
             "options": "1,2,3,4,5,6,7,8,9,10",
-            "data_dict_default": "1,1 | 2,2 | 3,3 | 4,4 | 5,5 | 6,6 | 7,7 | 8,8",
+            "data_dict_default": "1,1 | 2,2 | 3,3 | 4,4 | 5,5 | 6,6 | 7,7 | 8,8 | 9, 9 | 10, 10",
             "fillColor": "00aa00"
         },
         "RHEUMATOID_MAN": {
@@ -320,6 +329,45 @@
             "singleSelect": false,
             "fillColor": "0000cc",
             "map": "maps/fibromyalgia.html"
+        },
+        "SZMN_FRONT": {
+            "name": "szmn_front",
+            "alt": "SZMN Front",
+            "desc": "Facemap for pain",
+            "options": "01,02,03,04,05,06,07,08,09,10,11,12,13,14,15",
+            "data_dict_default": "01, Left Eye | 02, Right Eye | 03, Nose | 04, Mouth | 05, Left Jaw | 06, Right Jaw | 07, Voicebox | 08, Throat | 09, Left Cheek | 10, Right Cheek | 11, Left Temple | 12, Right Temple | 13, Left Ear | 14, Right Ear | 15, Head",
+            "image": "img/szmn_front.png",
+            "width": 572,
+            "height": 714,
+            "hideInput": true,
+            "singleSelect": false,
+            "map": "maps/szmn_front.html"
+        },
+        "SZMN_SIDE": {
+            "name": "szmn_side",
+            "alt": "SZMN Side",
+            "desc": "Facemap (side) for pain",
+            "options": "01,02,03,04,05,06,07,08,09,10,11,12,13,14",
+            "data_dict_default": "01, Right Eye | 02, Left Eye | 03, Nose | 04, Upper Lip | 05, Lower Lip | 06, Tongue | 07, Right Cheek | 08, Left Cheek | 09, Right Temple | 10, Left Temple | 11, Roof of the Mouth | 12, Back of the Throat | 13, Voice Box | 14, Jaw (see front face for left or right)",
+            "image": "img/szmn_side.png",
+            "width": 706,
+            "height": 883,
+            "hideInput": true,
+            "singleSelect": false,
+            "map": "maps/szmn_side.html"
+        },
+        "PHOTOFORM": {
+            "name": "photoform",
+            "alt": "Photoform",
+            "desc": "Custom map for photoform project",
+            "options": "f01,f02,f03,f04",
+            "data_dict_default": "f01, Upper Front | f02, Lower Front | f03, Upper Back | f04, Lower Back",
+            "image": "img/photoform.png",
+            "width": 750,
+            "height": 820,
+            "hideInput": true,
+            "singleSelect": false,
+            "map": "maps/photoform.html"
         }
     }
 }
