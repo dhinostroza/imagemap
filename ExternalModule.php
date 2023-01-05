@@ -9,7 +9,7 @@ namespace ImageMap\ExternalModule;
 use ExternalModules\AbstractExternalModule;
 use ExternalModules\ExternalModules;
 use Form;
-Use Stanford\Utility\ActionTagHelper;
+
 
 /**
  * ExternalModule class for Image Map.
@@ -22,94 +22,128 @@ class ExternalModule extends AbstractExternalModule {
      * @inheritdoc
      */
     function redcap_every_page_top($project_id) {
+
+        // Handle online designer view
         if (PAGE == 'Design/online_designer.php' && $project_id) {
-
-            echo "<script>var imageMapEM = imageMapEM || {};</script>";
-            echo "<script>imageMapEM.helpUrl = " . json_encode($this->getUrl('documentation.php')) . ";</script>";
-            echo "<script>imageMapEM.maps = " . json_encode($this->getImageMapParams()) . ";</script>";
-            echo "
-                <style>
-                    span.imagemap {
-                        margin-right: 5px;
-                        overflow-wrap: normal;
-                        word-wrap: normal;
-                    }
-
-                    div.imagemap-container {
-                        overflow-wrap: normal;
-                        -ms-hyphens: auto;
-                        -moz-hyphens: auto;
-                        -webkit-hyphens: auto;
-                        hyphens: auto;
-                    }
-                </style>
-             ";
-
-            $this->includeJs('js/helper.js');
+            $this->injectActionTagHelper();
         }
-
-        if (!in_array(PAGE, array('DataEntry/index.php', 'surveys/index.php', 'Surveys/theme_view.php'))) {
-            return;
+        // Handle Data Entry page
+        else if (PAGE === 'DataEntry/index.php') {
+            $this->injectImageMaps();
         }
-
-        if (empty($_GET['id'])) {
-            return;
+        // Handle Survey pages
+        else if (in_array(PAGE, ['surveys/index.php', 'Surveys/theme_view.php']) && !empty($GET['id'])) {
+            if (!isset($_GET['s']) && defined('NOAUTH')) {
+                // Do not remember this use case
+                return;
+            }
+            $this->injectImageMaps();
         }
+    }
 
-        // Checking additional conditions for survey pages.
-        if (PAGE == 'surveys/index.php' && !(isset($_GET['s']) && defined('NOAUTH'))) {
-            return;
-        }
-
+    private function injectImageMaps() {
         global $Proj;
         $settings = array();
 
         // Loop through action tags
-        $instrument = $_GET['page'];    // This is a bit of a hack, but in surveys this is set before the every_page_top hook is called
+        // This is a bit of a hack, but in surveys this value is set before the every_page_top hook is called
+        $instrument = $_GET['page'];
 
-        //TODO: Consider switching over to ActionTagHelper to support single-param overrides in imagemap (such as hiding or showing the radio/checkboxes)
+        // TODO: Consider switching over to ActionTagHelper to support single-param overrides in imagemap
+        // (such as hiding or showing the radio/checkboxes)
 
         // Check action-tags for this page
         foreach (array_keys($Proj->forms[$instrument]['fields']) as $field_name) {
             $field_info = $Proj->metadata[$field_name];
 
-            if (!$display_mode = Form::getValueInActionTag($field_info['misc'], $this->tag)) {
+            if (!$imagemap_name = Form::getValueInActionTag($field_info['misc'], $this->tag)) {
                 continue;
             }
 
-            // $row = $this->getDefaultConfig($display_mode);
-            $row = $this->getImageMapParams($display_mode);
+            // load the imagemap
+            $row = $this->getImageMapParams($imagemap_name);
 
             if (empty($row)) {
                 // The specified imagemap is not defined
-            } else {
-                // Add the imagemap to the settings
-                $row['field'] = $field_name;
-
-                $dir = $this->getModulePath();
-
-                $b64 = base64_encode(file_get_contents($dir . $row['image']));
-
-                $src = "data:image/png;base64,$b64";
-                $row['src'] = $src;
-
-                $row['areas'] = file_get_contents($dir .  $row['map']);
-                $row['type'] = $field_info['element_type'];
-
-                $settings[] = $row;
+                \REDCap::logEvent("Missing ImageMap", "$imagemap_name is defined for field $field_name but does not exist.",
+                    "", "", "", $project_id);
+                continue;
             }
+
+            // Add the imagemap to the settings
+            $row['field'] = $field_name;
+            $row['type'] = $field_info['element_type'];
+
+            $dir = $this->getModulePath();
+            $row['areas'] = file_get_contents($dir .  $row['map']);
+            $row['src'] = "data:image/png;base64," . base64_encode(file_get_contents($dir . $row['image']));;
+
+            $settings[] = $row;
         }
 
         if (empty($settings)) {
             return;
         }
 
-        echo '<script>var imageMapEM = imageMapEM || {};</script>';
-        echo '<script>imageMapEM.settings = ' . json_encode($settings) . ';</script>';
-
+        // Inject the javascript to the client
         $this->includeJs('js/imageMapster.js');
-        $this->includeJs('js/imagemap.js');
+
+        // Inject the JSMO
+        echo $this->initializeJavascriptModuleObject();
+        $data = [
+            "settings" => $settings,
+            "enableConsoleLogs" => $this->getProjectSetting('enable-console-logs')
+        ];
+        $this->includeJs('js/jsmo.js');
+        ?>
+        <script>
+            $(function() {
+                const module = <?=$this->getJavascriptModuleObjectName()?>;
+                module.data = <?=json_encode($data)?>;
+                module.afterRender(module.start);
+            })
+        </script>
+        <style>
+            /* Hide the form so we don't see checkboxes being hidden during page render */
+            #form {opacity: 0;}
+        </style>
+        <?php
     }
+
+
+    private function injectActionTagHelper() {
+        echo $this->initializeJavascriptModuleObject();
+        $data = [
+            "helpUrl" => $this->getUrl('documentation.php'),
+            "maps" => $this->getImageMapParams()
+        ];
+        $this->includeJs('js/jsmo.js');
+        ?>
+        <script>
+            $(function() {
+                const module = <?=$this->getJavascriptModuleObjectName()?>;
+                module.data = <?=json_encode($data)?>;
+                module.afterRender(module.onlineDesignerStart);
+            })
+        </script>
+        <style>
+            span.imagemap {
+                margin-right: 5px;
+                overflow-wrap: normal;
+                word-wrap: normal;
+            }
+
+            div.imagemap-container {
+                overflow-wrap: normal;
+                -ms-hyphens: auto;
+                -moz-hyphens: auto;
+                -webkit-hyphens: auto;
+                hyphens: auto;
+            }
+        </style>
+        <?php
+    }
+
 
     /**
      * Includes a local JS file - uses the API endpoint if auth type is shib
@@ -120,7 +154,6 @@ class ExternalModule extends AbstractExternalModule {
     protected function includeJs($path) {
         $use_api_urls = (bool) $this->getSystemSetting('use-api-urls');
         $ext_path = $this->getUrl($path, true, $use_api_urls);
-
         echo '<script src="' . $ext_path . '"></script>';
     }
 
@@ -135,7 +168,7 @@ class ExternalModule extends AbstractExternalModule {
 
         //TODO: Support having custom-maps defined via the EM config
         $image_maps = $this->getConfig()['default-image-maps'];
-        if ($image_map !== null) {
+        if ($image_map !== null && isset($image_maps[$image_map])) {
             return $image_maps[$image_map];
         } else {
             return $image_maps;
