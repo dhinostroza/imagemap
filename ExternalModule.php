@@ -32,7 +32,7 @@ class ExternalModule extends AbstractExternalModule {
             $this->injectImageMaps();
         }
         // Handle Survey pages
-        else if (in_array(PAGE, ['surveys/index.php', 'Surveys/theme_view.php']) && !empty($GET['id'])) {
+        else if (in_array(PAGE, ['surveys/index.php', 'Surveys/theme_view.php']) && !empty($_GET['id'])) {
             if (!isset($_GET['s']) && defined('NOAUTH')) {
                 // Do not remember this use case
                 return;
