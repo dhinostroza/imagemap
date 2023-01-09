@@ -2,6 +2,11 @@
 All notable changes to the Imagemap module will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.10.1] - 2023-01-09
+### Changed
+- bug fix for surveys (Andrew Martin)
+
+
 ## [1.10.0] - 2023-01-05
 ### Changed
 - Updated to framework 9 (which means minimum REDCap version for this release is 12.0.4)
