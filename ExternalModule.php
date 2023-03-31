@@ -7,7 +7,6 @@
 namespace ImageMap\ExternalModule;
 
 use ExternalModules\AbstractExternalModule;
-use ExternalModules\ExternalModules;
 use Form;
 
 
@@ -66,7 +65,7 @@ class ExternalModule extends AbstractExternalModule {
             if (empty($row)) {
                 // The specified imagemap is not defined
                 \REDCap::logEvent("Missing ImageMap", "$imagemap_name is defined for field $field_name but does not exist.",
-                    "", "", "", $project_id);
+                    "", "", "", $this->getProjectId());
                 continue;
             }
 
