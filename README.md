@@ -3,7 +3,7 @@
 
 [![DOI](https://zenodo.org/badge/115049747.svg)](https://zenodo.org/badge/latestdoi/115049747)
 
-This REDCap module replaces an input, radio, or checkbox field with an image that users can interact with to select one or more options. Specific applications include a body map (with over 70 body regions), a smile scale from 1-7 with facial expressions, three representations of teeth and teeth surfaces, among others. See below for a complete list of current imagemaps. The module is tied to questions via the `@IMAGEMAP` action tag and the name of one of the pre-defined image maps.  e.g. `@IMAGEMAP=PAINMAP_FEMALE`.
+This REDCap module replaces an input, radio, or checkbox field with an image that users can interact with to select one or more options. Specific applications include a body map (with over 70 body regions), a smile scale from 1-7 with facial expressions, three representations of teeth and teeth surfaces, among others. See below for a complete list of current imagemaps. The module is tied to questions via the `@IMAGEMAP` action tag and the name of one of the pre-defined image maps.  e.g. `@IMAGEMAP=CHOIRBODYMAP_FEMALE`.
 
 
 ## Prerequisites
@@ -31,7 +31,7 @@ This module defines a new action tag: `@IMAGEMAP`. The possible values for this 
 **`PAINMAP_MALE`**
 
 <details>
-<summary>Keys and Values for PAINMAP_MALE</summary>
+<summary>Keys and Values for CHOIRBODYMAP_MALE</summary>
 <p>
 
 ```
@@ -114,13 +114,13 @@ b38, Foot (bottom-right)
 </details>
 
 Representation of a generic male body.  
-![PAINMAP_MALE](./img/painmap_male.png)
+![CHOIRBODYMAP_MALE](./img/choirbodymap_male.png)
 
 
 **`PAINMAP_FEMALE`**
 
 <details>
-<summary>Keys and Values for PAINMAP_FEMALE</summary>
+<summary>Keys and Values for CHOIRBODYMAP_FEMALE</summary>
 <p>
 
 ```
@@ -203,7 +203,7 @@ b38, Foot (bottom-right)
 </details>
 
 Representation of a generic female body.  
-![PAINMAP_FEMALE](./img/painmap_female.png)
+![CHOIRBODYMAP_FEMALE](./img/choirbodymap_female.png)
 
 
 **`SMILE_SCALE`**
@@ -1598,8 +1598,8 @@ This is a body rendering developed at Stanford for a specific project -- no attr
 To display one of the images above in a survey or data entry form, add a new field of type **Text Box** and include one of the following options in the **Action Tags / Field Annotation (optional)** field:
 
 ```
-@IMAGEMAP=PAINMAP_MALE
-@IMAGEMAP=PAINMAP_FEMALE
+@IMAGEMAP=CHOIRBODYMAP_MALE (formerly PAINMAP_MALE)
+@IMAGEMAP=CHOIRBODYMAP_FEMALE (formerly PAINMAP_FEMALE)
 @IMAGEMAP=SMILE_SCALE
 @IMAGEMAP=5_FACE_PAINMAP
 @IMAGEMAP=SINGLE_TOOTH
@@ -1630,7 +1630,7 @@ This project includes an [Example Instrument](docs/Instrument\ Example.zip) that
 
 ## Acknowledgements & Copyright
  * The original body was devised by Dr. Ming-Chih J Kao and Professor Sean Mackey at Stanford University as part of [CHOIR](choir.stanford.edu). Use of the 'bodymap' images requires that the CHOIR attribution remains intact.
-   * Use of the 'PAINMAP_MALE' or 'PAINMAP_FEMALE' images for publication must include the following [citation](https://pubmed.ncbi.nlm.nih.gov/33490848/):
+   * Use of the 'CHOIRBODYMAP_MALE', 'CHOIRBODYMAP_FEMALE', 'PAINMAP_MALE' or 'PAINMAP_FEMALE' images for publication must include the following [citation](https://pubmed.ncbi.nlm.nih.gov/33490848/):
      ```Scherrer, Kristen Hymel,; Ziadni, Maisa S.; Kong, Jiang-Ti; Sturgeon, John A.;
      Salmasi, Vafi; Hong, Juliette; Cramer, Eric; Chen, Abby L.; Pacht, Teresa; Olson, Garrick;
      Darnall, Beth D.; Kao, Ming-Chih; Mackey, Sean.   Development and validation of the Collaborative 

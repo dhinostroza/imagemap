@@ -38,7 +38,7 @@ require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
     }
     table.detail textarea {
         width: 100%;
-        resize: auto;
+        resize: unset;
     }
     span.copy {float:right;margin-right: -10px;}
 
@@ -81,7 +81,7 @@ require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
     ?>
         <tr>
             <td>
-                <img class='preview' src='<?php echo $module->getUrl( $detail['image'] ) ?>'/>
+                <img class='preview' src='<?php echo $module->getUrl( $detail['image'] ) ?>' alt=""/>
             </td>
             <td>
                 <table class='detail'>
@@ -125,24 +125,19 @@ require_once APP_PATH_DOCROOT . 'ProjectGeneral/header.php';
 
 <h4>How can I make my own images?</h4>
 <p>
-    You must have a png image file AND create a html file containing <code>area</code> tags. An example area file is below:
+    You must have a png image file AND create a html file containing <code>area</code> tags. An example area file is below:</p>
 <pre class="code"><?php echo htmlspecialchars( file_get_contents($module->getModulePath() .'maps/smile_scale.html', false, null, 0, 200)) ?></pre>
-The value for the data-key attribute will be the value stored in REDCap - either as radio/checkbox keys or in a text box. Currently you must submit these files to our git repo - in the future we may add the ability to insert those files into the External Module as parameters.
+<p>The value for the data-key attribute will be the value stored in REDCap - either as radio/checkbox keys or in a text box. Currently, you must submit these files to our git repo - in the future we may add the ability to insert those files into the External Module as parameters.
 </p>
 
 <script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
 
 <script>
     new Clipboard('.copy', {
-        text: function(trigger) {
-            var tr = $(this).parentsUntil('tr').parent();
-            var target = $('.copy-target',tr);
-            var text = target.text();
-            return text;
+        text: function() {
+            const tr = $(this).parentsUntil('tr').parent();
+            const target = $('.copy-target',tr);
+            return target.text();
         }
     });
-
-    // $('.copy').bind('click', function() {
-    //
-    // });
 </script>
