@@ -435,6 +435,19 @@
             "hideInput": true,
             "singleSelect": false,
             "map": "maps/photoform.html"
+        },
+        "LADDER": {
+            "name": "ladder",
+            "alt": "Ladder image",
+            "desc": "Ladder image",
+            "options": "1,2,3,4,5,6,7,8,9,10",
+            "data_dict_default": "1, 1 | 2, 2 | 3, 3 | 4, 4 | 5, 5 | 6, 6 | 7, 7 | 8, 8 | 9, 9 | 10, 10",
+            "image": "img/ladder_image.png",
+            "width": 262,
+            "height": 650,
+            "singleSelect": true,
+            "hideInput": true,
+            "map": "maps/ladder.html"
         }
     }
 }
