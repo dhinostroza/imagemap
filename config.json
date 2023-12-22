@@ -448,6 +448,18 @@
             "singleSelect": true,
             "hideInput": true,
             "map": "maps/ladder.html"
-        }
+        },
+        "GRIDDED_BODY_MAP": {
+          "name": "gridded_body_map",
+          "alt": "Gridded Body Map for CTSI7245",
+          "desc": "Gridded Body Map for CTSI7245",
+          "options": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28",
+          "data_dict_default": "1, left thigh 1 | 2, left thigh 2 | 3, left thigh 3 | 4, left thigh 4 | 5, left thigh 5 | 6, left thigh 6 | 7, left thigh 7 | 8, left thigh 8 | 9, left thigh 9 | 10, left thigh 10 | 11, left thigh  11 | 12, left thigh  12 | 13, left thigh  13 | 14, left thigh  14 | 15, left thigh  15 | 16, left thigh  16 | 17, left thigh  17 | 18, left thigh  18 | 19, left thigh  19 | 20, left thigh  20 | 21, left thigh  21 | 22, left thigh  22 | 23, left thigh  23 | 24, left thigh  24 | 25, left thigh  25 | 26, left thigh  26 | 27, left thigh  27 | 28, left thigh  28 ",
+          "image": "img/gridded_body_map.png",
+          "width": 159,
+          "height": 360,
+          "hideInput": false,
+          "map": "maps/gridded_body_map.html"
+      }
     }
 }
