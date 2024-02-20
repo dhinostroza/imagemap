@@ -3,6 +3,12 @@ All notable changes to the Imagemap module will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
 
+## [1.12.0] - 2024-02-20
+### Added
+- Add NONEOFTHEABOVE tags to example project (@ChemiKyle)
+- Add deselection of imagemap regions when using NONEOFTHEABOVE action tag (@ChemiKyle)
+
+
 ## [1.11.0] - 2023-09-01
 ### Added
 - Add Ladder imagemap requested by Yunfeng Dai (Kyle Chesney)
