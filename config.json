@@ -470,7 +470,7 @@
       "image": "img/antpainimage1000px.png",
       "width": 415,
       "height": 1000,
-      "hideInput": false,
+      "hideInput": true,
       "map": "maps/grids_body_map_front.html"
     }
   }
